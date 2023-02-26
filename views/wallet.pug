@@ -1,0 +1,13 @@
+extends base
+
+block content
+    main.main
+        .tablet
+            .content
+                div.amount-cont
+                    div.tot-cont
+                        h1.label-earning Total Earnings 
+                        h1.amount= `₹ ${totalEarning}` 
+                    div.tod-cont
+                        h1.label-earning Earnings in last 24hr
+                        h1.amount= ` ₹ ${todaysEarning}`

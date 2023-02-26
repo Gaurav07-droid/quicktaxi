@@ -1,0 +1,24 @@
+extends base
+
+block content
+    main.main
+        div.requests-container
+            .reviews
+                each booking in bookings
+                    div.request-detail
+                        ul.price
+                            li.header=`Customer ${booking.user?booking.user.name:'user(not exists)'} ` 
+                            li.grey.driv-name= `Email : ${booking.user?booking.user.email:'user@gmail.com'} `
+                            li.grey= `Phone : ${booking.user?booking.user.phone:'********'} `
+                            li                            
+                            li.grey= `From : ${booking.from}`
+                            li.grey= `To : ${booking.to}`
+                            li
+                            li.grey= `Date and Time : ${booking.date}`
+                            li.grey= 'Distance : 30km'
+                            div.req-func
+                                li.black= `Total fair : ₹${booking.fair}`
+                                if booking.paid
+                                    li.green= ` Paid`
+                                else 
+                                    li.red= `Unpaid`

@@ -1,0 +1,10 @@
+extends base
+
+include _reviewCard
+
+block content
+    main.main
+        .reviews
+            each feedback in feedbacks
+                +reviewCard(feedback)
+                

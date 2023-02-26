@@ -1,0 +1,17 @@
+extends base
+
+block content
+    main.main
+        .prompt
+            | Enter the code sent on your mobile device below to log in!
+        h1.timer
+        form.digit-group(data-group-name="digits")
+            input#digit-1(type="text", name="digit-1" required="true")
+            input#digit-2(type="text", name="digit-2")
+            input#digit-3(type="text", name="digit-3")
+            input#digit-4(type="text", name="digit-4")
+            button.btn.btn--green(id='login') Login
+        .foot-verify    
+            p Didn't get the otp ? click below
+            a.req-otp-again(href="/login-with-mobile")
+                p Request Otp again    

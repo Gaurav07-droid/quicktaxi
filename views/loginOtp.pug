@@ -1,0 +1,12 @@
+extends base
+
+block content
+    main.main
+        .loginOtp-form
+            h2.heading-secondary.ma-bt-lg Log into your account with otp
+            img.taxi-logo(src=`/img/logo-white.jpg`, alt="avatar")
+            form.form_Otp
+                .form__group.ma-bt-ed    
+                    label.form__label(for='phone') Mobile number 
+                    input#phone.form__input(type='phone', placeholder='91+ 936894559', required, minlength='10')
+                    button.btn.btn--green#btn-login Request otp

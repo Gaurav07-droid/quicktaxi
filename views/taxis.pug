@@ -1,0 +1,15 @@
+extends base 
+
+
+block content
+    main.main
+        .reviews
+            div.card-container
+                each taxi in taxis
+                    div.card
+                        img.user-photo(src=`/img/taxiImages/${taxi.image}` alt=`${taxi.name}` style='width:100%')
+                        h1 #{taxi.name}
+                        p.title= `Reg no. ${taxi.regNumber}`
+                        p.title= `Driver ${taxi.driver.name}`
+                        p
+                        button.delete-taxi(data-slug=taxi.slug) Delete

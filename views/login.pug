@@ -1,0 +1,18 @@
+extends base
+
+block content
+    main.main
+        .login-form
+            h2.heading-secondary.ma-bt-lg Log into your account
+            img.taxi-logo(src=`/img/logo-white.jpg`, alt="avatar")
+            form.form_login
+                .form__group
+                    label.form__label(for='email') Email
+                    input#email.form__input(type='email', placeholder='tony starc', required)
+                .form__group.ma-bt-md
+                    label.form__label(for='password') Password
+                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group
+                    button.btn.btn--green#btn-login Login
+                    a#forgotPassword(href='/forgot-password') forgot password?
+                

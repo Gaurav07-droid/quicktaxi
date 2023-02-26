@@ -1,0 +1,12 @@
+extends base
+
+block content
+    .user-view__content
+        .user-view__form-container
+            h2.heading-secondary.ma-bt-md Enter your registered email here to get token
+            form.form
+                .form__group.ma-bt-md
+                    label.form__label(for='user-email') Email address
+                    input#email.form__input(type='email' placeholder='you@example.com'  required)
+                button.btn.btn--small.btn--green(id='getToken') get token
+

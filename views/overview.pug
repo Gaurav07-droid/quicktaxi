@@ -1,0 +1,55 @@
+extends base
+
+block content
+    main.main
+        h1.heading-options Select and ride with us today
+        div.options-section
+            if user
+                div.vehicles-cont 
+                    img.vechile-img(src="/img/auto-img.png", alt="img-auto")
+                    a.vechile-link(href="/ride/quick-auto") 
+                        div.content-vech
+                            h1 Quick auto
+                            p.vehc-description Affordable Quick Auto rides at your doorstep ➡       
+                    img.vechile-img(src="/img/cab-img.png", alt="img-auto")
+                    a.vechile-link(href="/ride/quick-cab") 
+                        div.content-vech
+                            h1 Quick cab 
+                            p.vehc-description Book cab to head outstaion anytime in convinient and affordable cars ➡       
+                div.vehicles-cont2 
+                    img.vechile-img(src="/img/rental-img.png", alt="img-auto")
+                    a.vechile-link(href="/ride/quick-rentals") 
+                        div.content-vech
+                            h1 Quick rentals
+                            p.vehc-description Book rentals to save time with one car and driver for your multi top trips ➡
+                    img.vechile-img(src="/img/moto-img.png", alt="img-auto")
+                    a.vechile-link(href="/ride/quick-moto") 
+                        div.content-vech
+                            h1 Quick moto 
+                            p.vehc-description Affordable Uber Moto rides at your doorstep ➡       
+            else
+                div.vehicles-cont 
+                    img.vechile-img(src="/img/auto-img.png", alt="img-auto")
+                    a.vechile-link(href="/login-options") 
+                        div.content-vech
+                            h1 Quick auto
+                            p.vehc-description Affordable Quick Auto rides at your doorstep ➡       
+                    img.vechile-img(src="/img/cab-img.png", alt="img-auto")
+                    a.vechile-link(href="/login-options") 
+                        div.content-vech
+                            h1 Quick cab 
+                            p.vehc-description Book cab to head outstaion anytime in convinient and affordable cars ➡       
+                div.vehicles-cont2 
+                    img.vechile-img(src="/img/rental-img.png", alt="img-auto")
+                    a.vechile-link(href="/login-options") 
+                        div.content-vech
+                            h1 Quick rentals
+                            p.vehc-description Book rentals to save time with one car and driver for your multi top trips ➡
+                    img.vechile-img(src="/img/moto-img.png", alt="img-auto")
+                    a.vechile-link(href="/login-options") 
+                        div.content-vech
+                            h1 Quick moto 
+                            p.vehc-description Affordable Uber Moto rides at your doorstep ➡       
+                    
+            
+                        

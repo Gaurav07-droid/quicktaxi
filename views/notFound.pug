@@ -1,0 +1,11 @@
+extend base
+
+block content
+
+    main.main
+        .error
+            .error__title
+                h2.heading-secondary.heading-secondary--error= `Sorry! No ${type} Found.`   
+                    h2.error__emoji 😢 🤯
+            .error__msg= `${'We will show if we found any'} `
+            a.bookresto(href='/me') Go back..

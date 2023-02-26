@@ -1,0 +1,33 @@
+extends base 
+
+block content
+    main.main
+        .signin-form-driver
+            h2.heading-secondary.ma-bt-lg Signup to become a driver 
+            form.form_signup_driver
+                .form__group
+                    label.form__label(for='username') Username
+                    input#user-name.form__input(type='username', placeholder='Mr xyz', required maxlength='9')
+                .form__group.ma-bt-ed
+                    label.form__label(for='email') Email address
+                    input#email.form__input(type='email', placeholder='you@example.com', required)
+                .form__group.ma-bt-ed    
+                    label.form__label(for='phone') Mobile number 
+                    input#phone.form__input(type='phone', placeholder='91+ 936894559', required, minlength='10', maxlength='10')
+                .form__group.ma-bt-ed    
+                    label.form__label(for='DL') Driving license  
+                    input#DL.form__input(type='DL', placeholder='KA-01-2009-0004558', required, minlength='16' maxlength='16')
+                .form__group.ma-bt-ed    
+                    label.form__label(for='Acc_no') Account number  
+                    input#Acc-number.form__input(type='Acc_no', placeholder='20090004558', required, minLength='9', maxLength='18')
+                .form__group.ma-bt-ed    
+                    label.form__label(for='ifsc') IFSC  
+                    input#ifsc-code.form__input(type='ifsc', placeholder='SBIN0070695', required, minLength='11', maxLength='11')
+                .form__group.ma-bt-md
+                    label.form__label(for='password') Password
+                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.ma-bt-lg
+                    label.form__label(for='password-confirm') Confirm password
+                    input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group
+                    button.btn.btn--green(id='signup') signup

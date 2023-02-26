@@ -1,0 +1,12 @@
+extends base
+
+block content
+    main.main
+        .card-taxiCont
+            img.taxi-image(src=`/img/taxiImages/${taxi.image}`, alt=`${taxi.slug}`, style="width:100%")
+            div.car-details
+                h1.model-name= `Name ${taxi.name}`
+                h1.quick-type= `Type ${taxi.type}`
+            div.car-details2
+                h1.reg-no= `Registration No. ${ taxi.regNumber}`
+                h1.taxi-price= `Price ${taxi.price}/km`

@@ -1,0 +1,40 @@
+extends base
+
+block content
+    main.main
+        if bookings.length<1
+            h1.message-cust If your booking is not showing below then please wait for some time or book another taxi as the request may be declined by the driver. Thank you
+        else
+            h1.message-cust If your booking is not showing below then please request again as the request is declined by the driver. Thank you
+
+            div.requests-container
+                .reviews
+                    each booking in bookings
+                        div.request-detail
+                            ul.price
+                                li.header=`Driver ${booking.driver.name}` 
+                                li.grey.driv-name= `Taxi : ${booking.taxi.name} `
+                                li.grey= `Phone : ${booking.driver.phone} `
+                                li                            
+                                li.grey= `From : ${booking.from}`
+                                li.grey= `To : ${booking.to}`
+                                li
+                                li.grey= `Date and Time : ${booking.date}`
+                                li.grey= 'Distance : 30km'
+                                div.req-func
+                                    li.black= `Total fair : ₹${booking.fair}`
+                                    if booking.paid
+                                        li.green Paid
+                                    else
+                                        button.pay-now(data-reqId=booking.id ) Pay now
+                            if booking.paid
+                                div.rev-container
+                                form.review-rate(data-id=booking.driver.id)
+                                    input#review-text(type="text" placeHolder="write your review here(max 25 characters)")
+                                    select#Numbers(name="rating")
+                                        option(value="1") 1
+                                        option(value="2") 2 
+                                        option(value="3") 3    
+                                        option(value="4") 4    
+                                        option(value="5") 5    
+                                    button.btnreview-driver(id='revBtn') submit                

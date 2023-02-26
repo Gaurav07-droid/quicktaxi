@@ -1,0 +1,22 @@
+extends base 
+
+block content
+    main.main
+        .signin-form-driver
+            h2.heading-secondary.ma-bt-lg Add your taxi 
+            form.form-add-taxi
+                .form__group
+                    label.form__label(for='taxi-name') Taxi Name
+                    input#taxi-name.form__input(type='name', placeholder='alto 800 or swift', required maxlength='9')
+                .form__group.ma-bt-ed
+                    label.form__label(for='type') Taxi Type
+                    input#taxi-type.form__input(type='type', placeholder='quick-cab or quick-auto', required)
+                .form__group.ma-bt-ed    
+                    label.form__label(for='regNo') Registration number 
+                    input#reg-no.form__input(type='regNo', placeholder='UP 50 BY 1998', required, minlength='13', maxlength='13')
+                .form__group.form__photo-upload
+                    input.form__upload(type='file',accept='image/*',id='photo',name='photo')
+                    label(for='photo') Add image  
+                    label.red-label Please remove background before uploading image!
+                .form__group
+                    button.btn.btn--green(id='add-taxi') Add Taxi

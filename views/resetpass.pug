@@ -1,0 +1,18 @@
+extends base
+
+block content
+    main.main
+        .user-view__form-container
+            h2.heading-secondary.ma-bt-md Enter token and Reset your password
+            form.form#resetpass-form
+                .form__group.ma-bt-lg
+                    label.form__label(for='reset-token') Your token
+                    input#reset-token.form__input(type='password', placeholder='••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••', required)
+                .form__group
+                    label.form__label(for='password') New password
+                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.ma-bt-lg
+                    label.form__label(for='password-confirm') Confirm password
+                    input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.right
+                    button.btn.btn--small.btn--green(id='passResetBtn') reset password

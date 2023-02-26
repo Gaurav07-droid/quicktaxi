@@ -1,0 +1,22 @@
+extends base
+
+block content
+    main.main
+        div.requests-container
+            .reviews
+                each travelReq in travelRequests
+                    div.request-detail
+                            ul.price
+                                li.header=`Requests for ${travelReq.driver.name}` 
+                                li.grey.driv-name= `Request by : ${travelReq.user.name} `
+                                li.grey= `Phone : ${travelReq.user.phone} `
+                                li                            
+                                li.grey= `From : ${travelReq.from}`
+                                li.grey= `To : ${travelReq.to}`
+                                li
+                                li.grey= 'Distance : 30km'
+                                div.req-func
+                                    li.black= `Total fair : ₹${travelReq.fair}`
+                                    button.accept-req(data-reqId=travelReq.id) Accept
+                                    button.decline-req(data-reqId=travelReq.id) Decline  
+                

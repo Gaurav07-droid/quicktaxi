@@ -1,0 +1,34 @@
+extends base
+
+include _reviewCard
+
+block content
+    main.main
+        div#map
+        form.input-loc-form
+            h2.heading-secondary.ma-bt-lg Request a ride
+            //- div.input-func
+            input#pickup-loc.form__input(type='text', placeholder='Enter pickup location',autoComplete='on' required)
+                //- button.get-loc auto  
+            input#destination-loc.form__input(type='text', placeholder='Enter destination', required)
+            div.ride-buttons
+                button.btn.btn--green#btn-reqRide(data-id=availTaxi.driver.id data-taxiId=availTaxi.id) request now
+        div.taxi-detail
+            .columns
+                ul.price
+                    li.header Vechile Details
+                    li.grey= `Vechile name : ${availTaxi.name}`
+                    li
+                    li.grey= `Vechile Reg. Number : ${availTaxi.regNumber}`
+                    li
+                    li.header Driver Details
+                    li
+                    div.driv-detail-cont
+                        li.grey.driv-name= `Name : ${availTaxi.driver.name}`
+                            img.driver-img(src=`/img/users/${availTaxi.driver.photo}` alt=`${availTaxi.driver.name}` )
+                    li.grey= `Phone : ${availTaxi.driver.phone}`  
+            div.vechile-img-cont
+                img.taxi-img(src=`/img/taxiImages/${availTaxi.image}`, alt=`${availTaxi.slug}`)
+                .reviews
+                    each feedback in feedbacks
+                        +reviewCard(feedback)

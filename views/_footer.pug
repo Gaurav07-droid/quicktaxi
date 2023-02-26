@@ -1,0 +1,13 @@
+footer.footer
+    .footer__logo
+        img(src='/img/logo-name.jpg' alt='Quicktaxi logo' width="100" )
+    ul.footer__nav
+        li: a(href='#') About us
+        li: a(href='#') Download apps
+        if user
+            li: a(href='/home') Become a driver
+        else
+            li: a(href='/signup/driver') Become a driver
+        li: a(href='#') Careers
+        li: a(href='#') Contact
+    p.footer_copyright &copy; Quicktaxi.co All rights reserved so donot claim its yours.

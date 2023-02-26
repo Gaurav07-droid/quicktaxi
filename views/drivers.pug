@@ -1,0 +1,15 @@
+extends base 
+
+
+block content
+    main.main
+        .reviews
+            div.card-container
+                each driver in drivers
+                    div.card
+                        img.user-photo(src=`/img/users/${driver.photo}` alt='John' style='width:100%')
+                        h1 #{driver.name}
+                        p.title #{driver.email}
+                        p.title #{driver.role}
+                        p
+                        button.delete-drivers(data-id=driver.id) Delete
