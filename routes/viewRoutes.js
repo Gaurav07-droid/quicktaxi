@@ -23,11 +23,11 @@ router.get("/my-taxi", viewsController.myTaxi);
 router.get("/add-taxi", viewsController.addTaxi);
 router.get("/home", viewsController.getOverview);
 
-// router.get(
-//   "/my-bookings",
-//   // travellingController.confirmPayment,
-//   viewsController.getBookingsForUser
-// );
+router.get(
+  "/my-bookings",
+  // travellingController.confirmPayment,
+  viewsController.getBookingsForUser
+);
 
 router.get("/bookings", viewsController.getBookingsForDriver);
 router.get("/ride/:taxi", viewsController.getTaxi);
