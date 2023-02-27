@@ -24,8 +24,8 @@ const createSendToken = function (req, user, statusCode, res) {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXP * 24 * 60 * 60 * 1000
     ),
-    // httpOnly: true,
-    // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    httpOnly: true,
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   });
 
   //removing password

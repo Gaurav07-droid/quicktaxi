@@ -95,7 +95,7 @@ export const sendRequest = async function (driver, from, to, taxi) {
   try {
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:3000/api/v1/taxi/request",
+      url: "/api/v1/taxi/request",
       data: {
         driver,
         from,
@@ -126,7 +126,7 @@ export const declineRequest = async function (id) {
   try {
     const res = await axios({
       method: "DELETE",
-      url: `http://127.0.0.1:3000/api/v1/taxi/request/${id}/decline`,
+      url: `/api/v1/taxi/request/${id}/decline`,
     });
 
     if (res.status === 204) {
@@ -147,7 +147,7 @@ export const acceptRequest = async function (id) {
   try {
     const res = await axios({
       method: "PATCH",
-      url: `http://127.0.0.1:3000/api/v1/taxi/request/${id}/accept`,
+      url: `/api/v1/taxi/request/${id}/accept`,
     });
 
     if (res.data.status === "success") {
@@ -171,7 +171,7 @@ const stripe = Stripe(
 export const bookTour = async (travelId) => {
   try {
     const session = await axios({
-      url: `http://127.0.0.1:3000/api/v1/travellings/checkout-session/${travelId}`,
+      url: `/api/v1/travellings/checkout-session/${travelId}`,
     });
 
     // creating checkout form with stripe
@@ -187,7 +187,7 @@ export const bookTour = async (travelId) => {
 export const giveFeedback = async (driver, rating, review) => {
   try {
     const res = await axios({
-      url: `http://127.0.0.1:3000/api/v1/feedback`,
+      url: `/api/v1/feedback`,
       method: "POST",
       data: {
         driver,

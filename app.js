@@ -7,7 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 // const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
-// const compression = require("compression");
+const compression = require("compression");
 const cors = require("cors");
 
 const userRouter = require("./routes/userRoutes");
@@ -15,6 +15,8 @@ const viewRouter = require("./routes/viewRoutes");
 const taxiRouter = require("./routes/taxiRoutes");
 const feedbackRouter = require("./routes/feedbackRoutes");
 const travellingRouter = require("./routes/travelingRoutes");
+
+const travellingController = require("./controller/travellingController");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controller/globalErrorhandle");
@@ -36,7 +38,12 @@ const limiter = rateLimit({
 
 app.use("/api", limiter);
 
-//call this before the body parser
+//stripe wbhook-checkout route
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  travellingController.webhookCheckout
+);
 
 //body parser,reading data from the req.body
 app.use(express.json({ limit: "10kb" }));
@@ -69,7 +76,7 @@ app.use(xss());
 //   })
 // );
 
-// app.use(compression());[]
+app.use(compression());
 
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));

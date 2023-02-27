@@ -3,6 +3,7 @@ const Travelling = require("../models/travellingModel");
 const Taxi = require("../models/taxiModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const User = require("../models/userModel");
 
 exports.defaultDetails = catchAsync(async (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
@@ -61,9 +62,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   //Create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    success_url: `${req.protocol}://${req.get("host")}/my-bookings?travelId=${
-      req.params.travelId
-    }&user=${req.user.id}&price=${travelling.amount}`,
+    // success_url: `${req.protocol}://${req.get("host")}/my-bookings?travelId=${
+    //   req.params.travelId
+    // }&user=${req.user.id}&price=${travelling.amount}`,
+    success_url: `${req.protocol}://${req.get("host")}/my-bookings`,
     cancel_url: `${req.protocol}://${req.get("host")}/me`,
     customer_email: req.user.email,
     client_reference_id: req.params.travelId,
@@ -94,16 +96,47 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-//creating booking checkout
+//creating booking checkout withour amking the site live
 
-exports.confirmPayment = catchAsync(async (req, res, next) => {
-  const { travelId, user, price } = req.query;
+// exports.confirmPayment = catchAsync(async (req, res, next) => {
+//   const { travelId, user, price } = req.query;
 
-  if (!travelId && !user && !price) return next();
+//   if (!travelId && !user && !price) return next();
+
+//   await Travelling.findByIdAndUpdate(travelId, {
+//     paid: true,
+//   });
+
+//   res.redirect(req.originalUrl.split("?")[0]);
+// });
+
+const createBookingCheckout = catchAsync(async (session) => {
+  const travelId = session.client_reference_id;
+  // const userId = (await User.findOne({ email: session.customer_email })).id;
 
   await Travelling.findByIdAndUpdate(travelId, {
     paid: true,
   });
-
-  res.redirect(req.originalUrl.split("?")[0]);
 });
+
+exports.webhookCheckout = (req, res, next) => {
+  const signature = req.headers["stripe-signature"];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      signature,
+      process.env.Stripe_webhook_secret
+    );
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send(`webhook error : ${err.message}`);
+  }
+
+  if (event.type === "checkout.session.completed") {
+    createBookingCheckout(event.data.object);
+  }
+
+  res.status(200).json({ received: true });
+};
