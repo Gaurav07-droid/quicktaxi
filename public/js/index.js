@@ -134,7 +134,8 @@ if (resetPassForm)
     // resetPassword(resetToken.value, password.value, confPassword.value);
     if (resetToken.value && inputPass.value && inputConfPass.value) {
       resetPassword(resetToken.value, inputPass.value, inputConfPass.value);
-      e.target.textContent = "resetting...";
+      document.getElementById("passResetBtn").textContent =
+        "Resetting password..";
     }
   });
 

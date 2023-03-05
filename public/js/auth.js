@@ -190,7 +190,16 @@ export const forgotPassword = async (email) => {
       }, 1500);
     }
   } catch (err) {
-    showAlert("error", err.response.data.message);
+    console.log(err);
+    if (err.response.status === 404) {
+      showAlert("error", "No user found with that email! Please try again");
+    } else {
+      showAlert("error", "Oops Something went wrong! Please try again");
+    }
+
+    window.setTimeout(() => {
+      location.reload(true);
+    }, 2000);
   }
 };
 
