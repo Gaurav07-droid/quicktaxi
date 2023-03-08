@@ -35,6 +35,6 @@ router.delete(
 );
 router.delete("/:id/travellings", travellingController.getATravelling);
 
-router.delete("/delete-me", userController.deleteMe);
+router.delete("/:email/delete-me", userController.deleteMe);
 
 module.exports = router;

@@ -38,7 +38,7 @@ router.get("/manage-users", viewsController.getAllUsers);
 router.get("/manage-drivers", viewsController.getAllDrivers);
 router.get("/my-earnings", viewsController.getMyWallet);
 router.get("/my-feedbacks", viewsController.getFeedbacks);
-
+router.get("/delete-account", viewsController.deleteMe);
 router.get("/manage-taxis", viewsController.getAllTaxis);
 
 module.exports = router;

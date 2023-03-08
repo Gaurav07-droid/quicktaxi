@@ -72,6 +72,10 @@ const userSchema = new mongoose.Schema(
     otp: Number,
     otpExpiresIn: Date,
     active: { type: String, default: true, select: false },
+    createdOn: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   {
     toJSON: { virtuals: true },

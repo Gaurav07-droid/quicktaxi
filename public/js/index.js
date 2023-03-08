@@ -11,6 +11,7 @@ import {
   updateProfile,
   addTaxi,
   deleteUser,
+  deleteMe,
 } from "./auth.js";
 
 import { showAlert } from "./alert.js";
@@ -24,6 +25,7 @@ import {
   bookTour,
   giveFeedback,
 } from "./mapbox.js";
+import { DayContext } from "twilio/lib/rest/bulkexports/v1/export/day.js";
 
 const timer = document.querySelector(".timer");
 
@@ -63,6 +65,7 @@ const formUpdatePass = document.getElementById("updatePass");
 const formUpdateMe = document.getElementById("form-userUpdate");
 const formAddTaxi = document.querySelector(".form-add-taxi");
 const formGiveFeedback = document.querySelector(".review-rate");
+const formDetelteMe = document.querySelector(".form-deleteME");
 
 const logOutBtn = document.querySelector(".nav__el--logout");
 const btnGetToken = document.getElementById("getToken");
@@ -80,7 +83,7 @@ const map = document.getElementById("map");
 if (formLogin)
   formLogin.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(inputEmail.value, inputPass.value);
+    // console.log(inputEmail.value, inputPass.value);
 
     login(inputEmail.value, inputPass.value);
   });
@@ -241,9 +244,9 @@ if (formAddTaxi)
 
     const form = new FormData();
 
-    console.log(inputTaxiName.value);
-    console.log(inputTaxiType.value);
-    console.log(inputTaxiRegNo.value);
+    // console.log(inputTaxiName.value);
+    // console.log(inputTaxiType.value);
+    // console.log(inputTaxiRegNo.value);
 
     form.append("name", inputTaxiName.value);
     form.append("type", inputTaxiType.value);
@@ -302,3 +305,15 @@ if (formGiveFeedback)
 
     giveFeedback(driver, ratings, feedback);
   });
+
+if (formDetelteMe) {
+  formDetelteMe.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    window.alert("Are you really want to delete your account?");
+
+    deleteMe(inputEmail.value);
+
+    document.getElementById("delete-me").textContent = "Deleting...";
+  });
+}

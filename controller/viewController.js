@@ -260,3 +260,9 @@ exports.getFeedbacks = catchAsync(async (req, res, next) => {
     });
   }
 });
+
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  res.status(200).render("deleteMe", {
+    title: "Delete account",
+  });
+});

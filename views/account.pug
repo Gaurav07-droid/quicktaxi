@@ -24,7 +24,7 @@ block content
                     ul.side-nav
                         +navigation('/my-bookings','briefcase','My Bookings')
                         +navigation('#','credit-card','Billing')
-                        +navigation('#','settings','Settings')
+                        +navigation('/delete-account','caution','delete account')
 
                 if user.role==='admin'
                     .admin-nav
@@ -76,6 +76,11 @@ block content
                                     svg
                                         use(xlink:href='img/icons.svg#icon-circle')
                                     | my taxi
+                            li
+                                a(href='/delete-account')
+                                    svg
+                                        use(xlink:href='img/icons.svg#icon-caution')
+                                    | delete account
                 else
                     .admin-nav
                         h5.admin-nav__heading for you

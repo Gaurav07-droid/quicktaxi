@@ -331,3 +331,30 @@ export const deleteUser = async (id) => {
     }, 1500);
   }
 };
+
+export const deleteMe = async (email) => {
+  try {
+    const res = await axios({
+      url: `/api/v1/users/${email}/delete-me`,
+      method: "DELETE",
+    });
+
+    if (res.status === 204) {
+      showAlert("success", "Your account deleted successfully!");
+
+      window.setTimeout(() => {
+        location.reload(true);
+      }, 1500);
+    }
+  } catch (err) {
+    if (err.response.status === 400) {
+      showAlert("error", "Incorrect email ! Please try again");
+    } else {
+      showAlert("error", "Oops! Something went wrong");
+    }
+
+    window.setTimeout(() => {
+      location.reload(true);
+    }, 1500);
+  }
+};

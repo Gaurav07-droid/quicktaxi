@@ -44,7 +44,6 @@ const devError = (req, err, res) => {
 
 const prodError = (req, err, res) => {
   //A) API
-  console.log(err);
   if (req.originalUrl.startsWith("/api")) {
     if (err.isOperational) {
       return res.status(err.statusCode).json({
@@ -64,6 +63,7 @@ const prodError = (req, err, res) => {
   } else {
     //B) RENDERED WEBSITE
     if (err.isOperational) {
+      console.log(err);
       return res.status(err.statusCode).render("error", {
         title: "Something went wrong!",
         mssg: err.message,

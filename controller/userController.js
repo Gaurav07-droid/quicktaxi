@@ -79,12 +79,23 @@ exports.deleteUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
-  await User.findByIdAndDelete(req.user.id);
-  await Taxi.findOneAndDelete({ driver: req.user.id });
+  if (req.user.email !== req.params.email)
+    return next(new AppError("Sorry incorrect email! Please try again", 400));
 
-  res.status(204).json({
-    status: "success",
-  });
+  await User.findOneAndDelete({ email: req.user.email });
+
+  const taxi = await Taxi.findOne({ driver: req.user.id });
+
+  if (!taxi) {
+    res.status(204).json({
+      status: "success",
+    });
+  } else {
+    await Taxi.findByIdAndDelete(taxi.id);
+    res.status(204).json({
+      status: "success",
+    });
+  }
 });
 
 // exports.sendRequest = catchAsync(async (req, res, next) => {});
