@@ -35,6 +35,9 @@ const travellingSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  distance: {
+    type: Number,
+  },
   paid: {
     type: Boolean,
     default: false,

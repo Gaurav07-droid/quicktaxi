@@ -39,11 +39,11 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 //stripe wbhook-checkout route
-app.post(
-  "/webhook-checkout",
-  express.raw({ type: "application/json" }),
-  travellingController.webhookCheckout
-);
+// app.post(
+//   "/webhook-checkout",
+//   express.raw({ type: "application/json" }),
+//   travellingController.webhookCheckout
+// );
 
 //body parser,reading data from the req.body
 app.use(express.json({ limit: "10kb" }));

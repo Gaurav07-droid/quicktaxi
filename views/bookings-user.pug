@@ -20,7 +20,7 @@ block content
                                 li.grey= `To : ${booking.to}`
                                 li
                                 li.grey= `Date and Time : ${booking.date}`
-                                li.grey= 'Distance : 30km'
+                                li.grey= `Distance : ${booking.distance || '25'}Km`
                                 div.req-func
                                     li.black= `Total fair : ₹${booking.fair}`
                                     if booking.paid

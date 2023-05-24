@@ -343,7 +343,7 @@ export const deleteMe = async (email) => {
       showAlert("success", "Your account deleted successfully!");
 
       window.setTimeout(() => {
-        location.reload(true);
+        location.assign("/");
       }, 1500);
     }
   } catch (err) {

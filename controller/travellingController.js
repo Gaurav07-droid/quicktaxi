@@ -15,7 +15,8 @@ exports.createTravelling = catchAsync(async (req, res, next) => {
   const travelling = await Travelling.create(req.body);
   const taxi = await Taxi.findById(travelling.taxi);
 
-  travelling.fair = taxi.price * Math.floor(Math.random() * (27 - 22 + 1) + 22);
+  travelling.distance = Math.floor(Math.random() * (27 - 22 + 1) + 22);
+  travelling.fair = taxi.price * travelling.distance;
   await travelling.save({ validateBeforeSave: false });
 
   res.status(200).json({ status: "success", data: travelling });
@@ -96,19 +97,19 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-//creating booking checkout withour amking the site live
+// creating booking checkout withour amking the site live
 
-// exports.confirmPayment = catchAsync(async (req, res, next) => {
-//   const { travelId, user, price } = req.query;
+exports.confirmPayment = catchAsync(async (req, res, next) => {
+  const { travelId, user, price } = req.query;
 
-//   if (!travelId && !user && !price) return next();
+  if (!travelId && !user && !price) return next();
 
-//   await Travelling.findByIdAndUpdate(travelId, {
-//     paid: true,
-//   });
+  await Travelling.findByIdAndUpdate(travelId, {
+    paid: true,
+  });
 
-//   res.redirect(req.originalUrl.split("?")[0]);
-// });
+  res.redirect(req.originalUrl.split("?")[0]);
+});
 
 const createBookingCheckout = catchAsync(async (session) => {
   const travelId = session.client_reference_id;
@@ -119,24 +120,24 @@ const createBookingCheckout = catchAsync(async (session) => {
   });
 });
 
-exports.webhookCheckout = (req, res, next) => {
-  const signature = req.headers["stripe-signature"];
-  let event;
+// exports.webhookCheckout = (req, res, next) => {
+//   const signature = req.headers["stripe-signature"];
+//   let event;
 
-  try {
-    event = stripe.webhooks.constructEvent(
-      req.body,
-      signature,
-      process.env.Stripe_webhook_secret
-    );
-  } catch (err) {
-    console.log(err);
-    return res.status(400).send(`webhook error : ${err.message}`);
-  }
+//   try {
+//     event = stripe.webhooks.constructEvent(
+//       req.body,
+//       signature,
+//       process.env.Stripe_webhook_secret
+//     );
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).send(`webhook error : ${err.message}`);
+//   }
 
-  if (event.type === "checkout.session.completed") {
-    createBookingCheckout(event.data.object);
-  }
+//   if (event.type === "checkout.session.completed") {
+//     createBookingCheckout(event.data.object);
+//   }
 
-  res.status(200).json({ received: true });
-};
+//   res.status(200).json({ received: true });
+// };

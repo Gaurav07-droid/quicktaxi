@@ -14,7 +14,7 @@ block content
                                 li.grey= `From : ${travelReq.from}`
                                 li.grey= `To : ${travelReq.to}`
                                 li
-                                li.grey= 'Distance : 30km'
+                                li.grey= `Distance : ${travelReq.distance || '26'} km`
                                 div.req-func
                                     li.black= `Total fair : ₹${travelReq.fair}`
                                     button.accept-req(data-reqId=travelReq.id) Accept

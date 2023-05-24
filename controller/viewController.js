@@ -151,6 +151,8 @@ exports.getBookingsForDriver = catchAsync(async (req, res, next) => {
     confirmed: true,
   }).sort({ date: -1 });
 
+  // console.log(bookings);
+
   if (bookings.length < 1) {
     res.status(200).render("notFound", {
       title: "No Bookings",
